@@ -3,47 +3,740 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Under Construction</title>
+  <title>GenAIVerse - The Future of Intelligence</title>
+
   <style>
-   
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      height: 100vh;
+      background: linear-gradient(135deg, #06060d, #1a1a2e);
+      color: #e0e0e0;
+      overflow-x: hidden;
+      text-align: justify;
+    }
+
+    header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      padding: 1.2em 6%;
+      background: rgba(20, 20, 35, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      color: #00d1ff;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .logo span { color: #ff0077; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2em;
+      flex-wrap: wrap;
+    }
+    nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #00d1ff;
+      background: rgba(0, 209, 255, 0.08);
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
       justify-content: center;
-      flex-direction: column;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      font-family: "Poppins", sans-serif;
-      color: white;
+      align-items: center;
       text-align: center;
-      overflow: hidden;
+      padding: 3em 1em;
+      background: url('https://images.unsplash.com/photo-1666887364910-d2c9c2dc5d9f?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
     }
 
-    h1 {
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      margin-top: 1rem;
-      animation: fadeIn 2s ease-in-out;
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 1em;
+      animation: fadeIn 1.5s ease-in;
     }
 
-    p {
-      font-size: 1.1rem;
-      opacity: 0.8;
+    .hero-content h2 {
+      font-size: 2.9em;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .hero-content p {
+      font-size: 1.15em;
+      margin-top: .8em;
+      line-height: 1.8;
+      color: #dcdcdc;
     }
 
-   
+    .btn {
+      margin-top: 1.6em;
+      background: #00d1ff;
+      color: #000;
+      padding: 0.7em 2em;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0, 209, 255, 0.4);
+    }
+    .btn:hover {
+      background: #ff0077;
+      color: white;
+      box-shadow: 0 0 15px rgba(255, 0, 119, 0.5);
+    }
+
+    section {
+      max-width: 1050px;
+      padding: 3em 2em;
+      margin: auto;
+      text-align: justify;
+    }
+    section h2 {
+      text-align: center;
+      color: #00d1ff;
+      font-size: 2.2em;
+      margin-bottom: 1.2em;
+    }
+    .rock{
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    #about p {
+      background: rgba(255,255,255,0.05);
+      padding: 1.3em;
+      line-height: 1.9;
+      border-radius: 10px;
+      font-size: 1.08em;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 15px;
+    }
+    #about h3 {
+      margin-top: 1.8em;
+      color: #ff0077;
+      font-size: 1.35em;
+      text-align: center;
+    }
+
+    .timeline-container {
+      margin-top: 35px;
+    }
+
+    .timeline-item {
+      display: block;
+      text-decoration: none;
+      color: #e0e0e0;
+      margin-bottom: 20px;
+      transition: .3s;
+    }
+
+    .timeline-item:hover .timeline-content {
+      transform: translateX(10px);
+      box-shadow: 0 0 12px rgba(0,209,255,0.25);
+    }
+
+    .timeline-content {
+      background: rgba(255,255,255,0.05);
+      padding: 1em;
+      border-radius: 8px;
+      border-left: 3px solid #00d1ff;
+      border-right: 3px solid #ff0077;
+      transition: .3s;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2em;
+      margin-top: 20px;
+    }
+
+    .step-box {
+      background: rgba(255,255,255,0.04);
+      padding: 1.5em;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(0,209,255,0.15);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .step-box:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 0 15px rgba(0,209,255,0.3);
+    }
+
+    .step-img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 0 5px rgba(0,209,255,0.5));
+      transition: .3s;
+    }
+
+    .step-box:hover .step-img {
+      transform: scale(1.12);
+    }
+
+    .step-box h3 {
+      margin-bottom: 8px;
+      color: #00d1ff;
+    }
+
+    .step-box p {
+      font-size: 0.95em;
+      color: #dcdcdc;
+    }
+
+   .benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2em;
+}
+
+.benefit {
+  background: rgba(255,255,255,0.05);
+  padding: 1.4em;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(0,209,255,0.15);
+  text-decoration: none;
+  color: #e0e0e0;     
+  display: block;     
+  transition: .3s;
+}
+
+.benefit:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 15px rgba(0,209,255,0.25);
+  background: rgba(255,255,255,0.08);
+}
+
+.benefit-img {
+  width: 65px;
+  margin-bottom: 10px;
+}
+
+
+.benefit:hover .benefit-img {
+  transform: scale(1.1);
+}
+
+.benefit h3 {
+  color: #00d1ff;
+  margin-bottom: 6px;
+}
+
+.benefit p {
+  font-size: 0.95em;
+  color: #dcdcdc;
+  text-align: justify;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2em;
+  margin-top: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.04);
+  padding: 1.5em;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(0,209,255,0.15);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 0 15px rgba(0,209,255,0.25);
+}
+
+.app-img {
+  width: 85px;
+  height: 85px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 5px rgba(0,209,255,0.45));
+  transition: .3s;
+}
+
+.card:hover .app-img {
+  transform: scale(1.12);
+}
+
+.card h3 {
+  color: #00d1ff;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 0.95em;
+  color: #dcdcdc;
+  text-align: justify;
+}
+
+
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2em;
+  margin-top: 20px;
+}
+
+.review-card {
+  background: rgba(255,255,255,0.05);
+  padding: 1.6em;
+  border-radius: 12px;
+  border: 1px solid rgba(0,209,255,0.15);
+  text-align: center;
+  transition: 0.3s;
+}
+
+.review-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 15px rgba(0,209,255,0.25);
+}
+
+.review-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 4px rgba(0,209,255,0.5));
+}
+
+.review-card p {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #dcdcdc;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+.review-card h4 {
+  color: #00d1ff;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+    .contact-box p {
+  margin-bottom: 12px;
+  font-size: 1.05em;
+  line-height: 1.8;
+  text-align: justify;
+  color: #e4e4e4;
+}
+
+.contact-box b {
+  color: #00d1ff;
+}
+
+    footer {
+      text-align: center;
+      padding: 2em;
+      margin-top: 2em;
+      color: #888;
+      border-top: 1px solid #222;
+      font-size: .95em;
+    }
+    footer> a { 
+      text-decoration: none;
+      color: #00d1ff;
+      transform: scale(1.12);
+    }
+    
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* ✅ RESPONSIVE FIXES */
+@media (max-width: 992px) {
+  header {
+    padding: 1em 4%;
+  }
+
+  .hero-content h2 {
+    font-size: 2.2em;
+  }
+
+  .hero-content p {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 768px) {
+
+  nav ul {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .hero {
+    padding: 2em 1em;
+  }
+
+  .hero-content h2 {
+    font-size: 2em;
+  }
+
+  section {
+    padding: 2em 1.5em;
+  }
+
+  .steps,
+  .benefits,
+  .cards,
+  .testimonials {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .step-img,
+  .benefit-img,
+  .app-img,
+  .review-img {
+    width: 65px;
+    height: 65px;
+  }
+
+  footer {
+    font-size: .9em;
+  }
+}
+
+@media (max-width: 540px) {
+
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+    text-align: right;
+  }
+
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero-content h2 {
+    font-size: 1.7em;
+  }
+
+  .hero-content p {
+    font-size: 0.9em;
+  }
+
+  .btn {
+    padding: 0.6em 1.4em;
+    font-size: .9em;
+  }
+
+  .steps,
+  .benefits,
+  .cards,
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+
+  section h2 {
+    font-size: 1.8em;
+  }
+
+  p {
+    font-size: 0.92em;
+  }
+
+  .step-img,
+  .benefit-img,
+  .app-img,
+  .review-img {
+    width: 60px;
+    height: 60px;
+  }
+}
   </style>
 </head>
+
 <body>
-  <div class="loader"></div>
-  <h1>This Page Is Under Construction</h1>
-  <p>I am working hard to bring something amazing. Please check back soon!</p>
-  
+
+<header>
+  <h1 class="logo">GenAI<span>Verse</span></h1>
+  <nav>
+    <ul>
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#how">How AI Works</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#applications">Applications</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h2>Explore the Power of <span style="color:#00d1ff;">Artificial & Generative Intelligence</span></h2>
+    <p>AI is shaping the future of medicine, creativity, automation and daily life.</p>
+    <a href="#about" class="btn">Get Started</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="rock"><h2>What is Artificial Intelligence?</h2></div>
+
+  <p>
+    Artificial Intelligence (AI) is the field of computer science that focuses on creating machines capable of performing tasks that usually require human intelligence. 
+    These tasks include learning, decision-making, language understanding, problem-solving, planning, and recognizing objects or speech.
+  </p>
+
+  <p>
+    AI works by reading large amounts of data, finding patterns, learning from those patterns, and making smart predictions or decisions. 
+    Today, AI powers almost everything around us — voice assistants, face unlock, maps, smart cameras, online shopping recommendations, and even space research.
+  </p>
+
+  <p>
+    The main goal of AI is to make life easier and faster while reducing errors. 
+    It helps hospitals detect diseases, farmers grow better crops, students learn faster, and businesses automate work.
+  </p>
+
+  <div class="rock"><h3>What is Generative AI?</h3></div>
+
+  <p>
+    Generative AI is a powerful branch of AI that <b>creates new content</b> instead of just analyzing data. 
+    It writes stories, draws pictures, makes videos, composes music, and even generates human-like conversations.
+    Tools like <b>ChatGPT, DALL-E, Midjourney, RunwayML</b> and many others are examples of Generative AI.
+  </p>
+
+  <p>
+    Students use Generative AI to write notes, create presentations, summarize chapters, and solve homework.  
+    Designers use it for logos, posters, 3D models, and animations.  
+    Filmmakers use it to generate scenes and visual effects.  
+    Businesses use AI chatbots to answer customer questions 24/7.
+  </p>
+
+  <p>
+    The exciting part? Generative AI continues improving every day.  
+    As it receives more data, it becomes smarter, more accurate, and more creative — almost like a learning human brain.
+  </p>
+
+  <h3>Evolution of AI</h3>
+
+  <div class="timeline-container">
+
+    <a href="1950s.html" class="timeline-item">
+      <div class="timeline-content">
+        <h4>1950s – Birth of AI</h4>
+        <p>First idea of machines that think like humans.</p>
+      </div>
+    </a>
+
+    <a href="2000s.html" class="timeline-item">
+      <div class="timeline-content">
+        <h4>2000–2010 – AI in Daily Life</h4>
+        <p>Used in phones, face unlock, games & web search.</p>
+      </div>
+    </a>
+
+    <a href="2014to2020.html" class="timeline-item">
+      <div class="timeline-content">
+        <h4>2014–2020 – Deep Learning Era</h4>
+        <p>Self-driving cars, robotics, voice assistants & translation.</p>
+      </div>
+    </a>
+
+    <a href="2020-present.html" class="timeline-item">
+      <div class="timeline-content">
+        <h4>2020–Present – Generative AI Boom</h4>
+        <p>AI creates images, videos, music & conversations.</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section id="how">
+  <h2>How Does AI Work?</h2>
+
+  <div class="steps">
+
+    <a href="data-input.html" style="text-decoration:none; color:inherit;">
+      <div class="step-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/5691/5691506.png" class="step-img">
+        <h3>1. Data Input</h3>
+        <p>AI learns from large datasets such as images, text, or sound.</p>
+      </div>
+    </a>
+
+    <a href="training.html" style="text-decoration:none; color:inherit;">
+      <div class="step-box">
+        <img src="https://cdn-icons-png.flaticon.com/128/4712/4712027.png" class="step-img">
+        <h3>2. Training</h3>
+        <p>Algorithms analyze patterns and relationships.</p>
+      </div>
+    </a>
+
+    <a href="prediction.html" style="text-decoration:none; color:inherit;">
+      <div class="step-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png" class="step-img">
+        <h3>3. Prediction</h3>
+        <p>AI identifies objects, answers questions, or generates content.</p>
+      </div>
+    </a>
+
+    <a href="improvement.html" style="text-decoration:none; color:inherit;">
+      <div class="step-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/9021/9021254.png" class="step-img">
+        <h3>4. Improvement</h3>
+        <p>More data = smarter AI.</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section id="benefits">
+  <h2>Why is AI Important?</h2>
+
+  <div class="benefits">
+
+    <a href="faster-work.html" class="benefit">
+      <img src="https://cdn-icons-png.flaticon.com/512/2920/2920256.png" class="benefit-img">
+      <h3>⚡ Faster Work</h3>
+      <p>AI automates repetitive tasks and works 24/7 without rest.</p>
+    </a>
+
+    <a href="accuracy.html" class="benefit">
+      <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="benefit-img">
+      <h3>🎯 Accuracy</h3>
+      <p>AI is used in healthcare, security, and high-precision industries.</p>
+    </a>
+
+    <a href="smarter-world.html" class="benefit">
+      <img src="https://cdn-icons-png.flaticon.com/512/5950/5950392.png" class="benefit-img">
+      <h3>🌍 Smarter World</h3>
+      <p>Self-driving cars, drones, robots, and smart cities use AI.</p>
+    </a>
+
+    <a href="creativity.html" class="benefit">
+      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" class="benefit-img">
+      <h3>🎨 Creativity</h3>
+      <p>AI generates art, music, designs, animations and videos.</p>
+    </a>
+
+  </div>
+</section>
+
+
+
+<section id="applications">
+  <h2>Applications of Generative AI</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/8363/8363945.png" class="app-img">
+      <h3>🎨 Art & Design</h3>
+      <p>AI creates paintings, illustrations, logos, 3D models and animations.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712007.png" class="app-img">
+      <h3>💬 Chatbots</h3>
+      <p>Write essays, answer questions, give explanations and assist users 24/7.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/5626/5626569.png" class="app-img">
+      <h3>🎧 Music</h3>
+      <p>AI generates songs, beats, voices and unique audio compositions.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png" class="app-img">
+      <h3>🏥 Healthcare</h3>
+      <p>Diagnoses diseases, reads medical scans, designs medicines and research drugs.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="testimonials">
+  <h2>What People Say</h2>
+
+  <div class="testimonials">
+
+    <div class="review-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" class="review-img">
+      <p>“Generative AI changed how designers work. Ideas turn into visuals instantly.”</p>
+      <h4>- A Creative Designer</h4>
+    </div>
+
+    <div class="review-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" class="review-img">
+      <p>“AI chatbots help companies provide 24/7 customer service.”</p>
+      <h4>- Business Owner</h4>
+    </div>
+
+    <div class="review-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922656.png" class="review-img">
+      <p>“Hospitals use AI to detect diseases early and save lives.”</p>
+      <h4>- Medical Researcher</h4>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="contact">
+  <h2>Get in Touch</h2>
+  <div class="contact-box">
+    <p><b>📩 Email:</b> info@genaiverse.com</p>
+    <p><b>🌐 Website:</b> www.genaiverse.com</p>
+    <p><em>The future belongs to innovators ✨</em></p>
+  </div>
+</section>
+
+
+<footer>
+   GenAIVerse | Built for AOTM Project |
+  <a href="#home">Back to Top</a>
+</footer>
+
 </body>
 </html>

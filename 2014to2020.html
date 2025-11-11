@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2014–2020 - The AI Boom</title>
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif;}
+
+    body{ background:linear-gradient(135deg,#08080e,#121227); color:#e0e0e0;}
+
+    header{
+      background:rgba(20,20,35,0.9);
+      padding:1.2em 6%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky; top:0;
+      border-bottom:1px solid #222;
+      z-index:10;
+      backdrop-filter: blur(6px);
+    }
+
+    .logo{ font-size:1.7em; font-weight:700; color:#00d1ff;}
+    .logo span{ color:#ff0077;}
+
+    nav ul{ list-style:none; display:flex; gap:1.2em;}
+    nav ul li a{
+      text-decoration:none; color:#ccc;
+      padding:6px 10px; border-radius:6px; transition:.3s;
+    }
+    nav ul li a:hover, nav ul li a.active{
+      background:rgba(0,209,255,0.1); color:#00d1ff;
+    }
+
+    .hero-image{
+      width:100%;
+      height:100vh;
+      object-fit:cover;
+      border-bottom:2px solid rgba(255,255,255,0.08);
+      display:block;
+    }
+
+    section{ max-width:900px; margin:auto; padding:3em 1.5em;}
+
+    h1{
+      text-align:center; margin-bottom:1.2em;
+      font-size:2.2em; color:#00d1ff;
+    }
+
+    .content{
+      background:rgba(255,255,255,0.05);
+      padding:1.6em; border-radius:10px;
+      border:1px solid rgba(255,255,255,0.08);
+      line-height:1.8; text-align:justify;
+      font-size:1.05em;
+    }
+
+    h2{ color:#ff0077; margin-top:1.4em; font-size:1.3em; }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+      gap:1em; margin-top:1em;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.05);
+      padding:1em; border-radius:10px;
+      border:1px solid rgba(0,209,255,0.12);
+      text-align:center; transition:.3s;
+    }
+    .card:hover{ transform:translateY(-5px); box-shadow:0 0 12px rgba(0,209,255,0.2); }
+
+    .back-btn{
+      display:inline-block; background:#00d1ff; color:#000;
+      padding:.7em 1.6em; border-radius:25px;
+      text-decoration:none; font-weight:600;
+      margin-top:2em; transition:.3s;
+    }
+    .back-btn:hover{ background:#ff0077; color:#fff;}
+
+    footer{
+      text-align:center; margin-top:2em;
+      padding:1.5em; border-top:1px solid #222;
+      color:#888; font-size:.9em;
+    }
+
+    @media(max-width:600px){
+      .hero-image{
+        content:url("images/p8 phone.jpg");
+        height:100vh;
+        object-fit:contain;   
+        background:#000;
+      }
+      h1{ font-size:1.8em; }
+      .content{ font-size:0.95em; }
+      .logo{ font-size:1.4em; }
+      nav ul{ gap:0.8em; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1 class="logo">GenAI<span>Verse</span></h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a class="active">2014–2020</a></li>
+    </ul>
+  </nav>
+</header>
+
+<img src="images/p8.jpg" alt="AI Boom" class="hero-image">
+
+<section>
+  <h1>2014–2020: The AI Boom</h1>
+
+  <div class="content">
+    <p>This was the most exciting time in AI history. Machines became smarter than ever. They could recognize faces, understand speech, translate languages, and drive cars.</p>
+
+    <h2>Deep Learning Revolution</h2>
+    <p>New machine learning models were created that worked like a human brain. These models are called <b>neural networks</b>. They made AI extremely accurate in prediction and recognition.</p>
+
+    <h2>Achievements of This Era</h2>
+    <div class="grid">
+      <div class="card">Self-driving cars</div>
+      <div class="card">Robots that walk and run</div>
+      <div class="card">Real-time language translation</div>
+      <div class="card">Face unlock in smartphones</div>
+    </div>
+
+    <h2>AI in Reality</h2>
+    <p>Hospitals used AI to detect diseases. Factories used robots for work. Apps like YouTube, Netflix, Instagram used AI to recommend videos and posts.</p>
+
+    <h2>Why It Matters</h2>
+    <p>The world started trusting AI. It moved from small devices to industries, medicine, transport, and entertainment.</p>
+
+    <a href="index.html" class="back-btn">⬅ Back to Main Website</a>
+  </div>
+</section>
+
+<footer>
+  © 2025 GenAIVerse | AI History Page
+</footer>
+
+</body>
+</html>

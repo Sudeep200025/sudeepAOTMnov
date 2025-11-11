@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faster Work - GenAIVerse</title>
+  <link rel="stylesheet" href="faster-work.css">
+</head>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#06060d,#1a1a2e);
+  color:#e0e0e0;
+  line-height:1.8;
+  text-align:justify;
+}
+
+header{
+  background:rgba(20,20,35,0.85);
+  padding:1.2em 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #222;
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter:blur(6px);
+}
+
+.logo{
+  font-size:1.8em;
+  font-weight:700;
+  color:#00d1ff;
+}
+.logo span{color:#ff0077;}
+
+.hero-img{
+    
+  width:90%;
+  margin: auto;
+  height:100vh;
+  background:url(images/p10.png)  center/cover no-repeat;
+  border-bottom:2px solid rgba(255,255,255,0.05);
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:3em 2em;
+}
+
+h1{
+  text-align:center;
+  color:#00d1ff;
+  font-size:2.3em;
+  margin-bottom:1em;
+}
+
+p{
+  background:rgba(255,255,255,0.05);
+  padding:1.2em;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.06);
+  margin-bottom:15px;
+}
+
+.back-btn{
+  display:inline-block;
+  margin-top:20px;
+  background:#00d1ff;
+  color:#000;
+  padding:.7em 1.6em;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+
+.back-btn:hover{
+  background:#ff0077;
+  color:#fff;
+  transform:scale(1.05);
+  box-shadow:0 0 12px rgba(255,0,119,0.4);
+}
+
+@media(max-width:600px){
+  .hero-img{
+    height:95vh;
+    background:url(images/p10\ phone.png) center no-repeat;
+    background-size:contain;
+    background-color:#0b0b15;
+  }
+
+  h1{font-size:1.8em;}
+  p{font-size:0.95em;}
+}
+</style>
+<body>
+
+<header>
+  <h1 class="logo">GenAI<span>Verse</span></h1>
+</header>
+
+<div class="hero-img"></div>
+
+<div class="container">
+  <h1>⚡ Faster Work</h1>
+
+  <p>AI helps humans finish tasks faster. It can process millions of calculations in seconds, automate boring tasks and work 24/7.</p>
+
+  <p>
+    ✅ Robots in factories speed up production <br>
+    ✅ Smart assistants answer instantly <br>
+    ✅ AI repeats work perfectly without mistakes <br>
+    ✅ Businesses automate emails, chat & billing
+  </p>
+
+  <p>
+    Thanks to AI, industries save time, money and effort.
+  </p>
+
+  <a href="index.html" class="back-btn">⬅ Back to Home</a>
+</div>
+
+</body>
+</html>
