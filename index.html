@@ -1,470 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GenAIVerse - The Future of Intelligence</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: linear-gradient(135deg, #06060d, #1a1a2e);
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      font-family: "Poppins", "Inter", sans-serif;
+      background: linear-gradient(135deg, #06060d, #0f1724);
       color: #e0e0e0;
-      overflow-x: hidden;
-      text-align: justify;
+      overflow-x:hidden;
+      text-align:justify;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2em 6%;
-      background: rgba(20, 20, 35, 0.85);
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:1.2em 6%;
+      background: rgba(20,20,35,0.85);
       position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid #222;
+      top:0;
+      z-index:100;
+      backdrop-filter: blur(8px) saturate(120%);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      transition: all .28s ease;
+    }
+    header.scrolled{
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      transform: translateY(-1px);
     }
 
-    .logo {
-      font-size: 1.8em;
-      color: #00d1ff;
-      font-weight: 700;
-      letter-spacing: 1px;
+    .logo{
+      font-size:1.8em;
+      color:#00d1ff;
+      font-weight:700;
+      letter-spacing:1px;
+      display:flex;
+      gap:.35rem;
+      align-items:center;
     }
-    .logo span { color: #ff0077; }
+    .logo span{ color:#ff0077; }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.2em;
-      flex-wrap: wrap;
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:1.2em;
+      flex-wrap:wrap;
+      align-items:center;
     }
-    nav ul li a {
-      color: #ccc;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-      padding: 5px 10px;
-      border-radius: 6px;
+    nav ul li a{
+      color:#ccc;
+      text-decoration:none;
+      font-weight:600;
+      transition:.25s;
+      padding:6px 10px;
+      border-radius:8px;
+      font-size:0.95rem;
+      display:inline-block;
     }
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: #00d1ff;
-      background: rgba(0, 209, 255, 0.08);
+    nav ul li a:hover{ color:#00e0ff; transform:translateY(-3px);}
+    nav ul li a.active{
+      color:#001d25;
+      background: linear-gradient(90deg,#00d1ff,#ff6aa6);
+      box-shadow: 0 8px 24px rgba(0,209,255,0.12);
     }
 
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 3em 1em;
+    .hero{
+      min-height:80vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:3em 1em;
       background: url('https://images.unsplash.com/photo-1666887364910-d2c9c2dc5d9f?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
-      position: relative;
+      position:relative;
+      overflow:hidden;
     }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(0,0,0,0.68);
+      z-index:0;
+    }
+    .bg-orb{
+      position:absolute;
+      border-radius:50%;
+      filter: blur(40px) saturate(140%);
+      opacity: .12;
+      z-index:0;
+      pointer-events:none;
+      animation: floaty 14s ease-in-out infinite;
+    }
+    .orb-a{ width:420px; height:420px; background: linear-gradient(90deg,#00d1ff,#00a0ff); left:-6%; top:8%; }
+    .orb-b{ width:260px; height:260px; background: linear-gradient(90deg,#ff5fa4,#ff8ac6); right:-6%; bottom:6%; animation-duration:18s; }
+
+    @keyframes floaty{
+      0%{ transform: translateY(0) scale(1); }
+      50%{ transform: translateY(-20px) scale(1.03); }
+      100%{ transform: translateY(0) scale(1); }
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      padding: 1em;
-      animation: fadeIn 1.5s ease-in;
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:800px;
+      padding:1.1em 1.3em;
+      animation: fadeIn 1s ease both;
+      border-radius:12px;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    }
+    .hero-content h2{
+      font-size:2.9em;
+      font-weight:700;
+      line-height:1.2;
+      color:#e8f7ff;
+    }
+    .hero-content p{
+      font-size:1.15em;
+      margin-top:.8em;
+      line-height:1.8;
+      color:#dcdcdc;
     }
 
-    .hero-content h2 {
-      font-size: 2.9em;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-    .hero-content p {
-      font-size: 1.15em;
-      margin-top: .8em;
-      line-height: 1.8;
-      color: #dcdcdc;
-    }
-
-    .btn {
-      margin-top: 1.6em;
+    .btn{
+      margin-top:1.6em;
       background: #00d1ff;
-      color: #000;
-      padding: 0.7em 2em;
-      border-radius: 25px;
+      color:#000;
+      padding:0.75em 1.8em;
+      border-radius:25px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.25s;
+      display:inline-block;
+      box-shadow: 0 8px 24px rgba(0,209,255,0.18);
+      cursor:pointer;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn:hover{ background:#ff0077; color:white; box-shadow: 0 14px 40px rgba(255,0,119,0.18); transform:translateY(-6px); }
+    .btn:after{
+      content:"";
+      position:absolute;
+      top:50%; left:50%;
+      width:10px; height:10px;
+      background: rgba(255,255,255,0.12);
+      border-radius:50%;
+      transform:translate(-50%,-50%) scale(1);
+      opacity:0;
+      transition: all .45s ease;
+    }
+    .btn:active:after{ width:220px; height:220px; opacity:.07; transition:0s; }
+
+    section{ max-width:1050px; padding:3em 2em; margin:auto; text-align:justify; }
+    section h2{ text-align:center; color:#00d1ff; font-size:2.2em; margin-bottom:1.2em; }
+    .rock{ margin-top:50px; margin-bottom:50px; }
+    section a {
       text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
-      display: inline-block;
-      box-shadow: 0 0 10px rgba(0, 209, 255, 0.4);
-    }
-    .btn:hover {
-      background: #ff0077;
-      color: white;
-      box-shadow: 0 0 15px rgba(255, 0, 119, 0.5);
     }
 
-    section {
-      max-width: 1050px;
-      padding: 3em 2em;
-      margin: auto;
-      text-align: justify;
-    }
-    section h2 {
-      text-align: center;
-      color: #00d1ff;
-      font-size: 2.2em;
-      margin-bottom: 1.2em;
-    }
-    .rock{
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-
-    #about p {
+    #about p{
       background: rgba(255,255,255,0.05);
-      padding: 1.3em;
-      line-height: 1.9;
-      border-radius: 10px;
-      font-size: 1.08em;
-      border: 1px solid rgba(255,255,255,0.05);
-      margin-bottom: 15px;
+      padding:1.3em;
+      line-height:1.9;
+      border-radius:10px;
+      font-size:1.08em;
+      border:1px solid rgba(255,255,255,0.05);
+      margin-bottom:15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
     }
-    #about h3 {
-      margin-top: 1.8em;
-      color: #ff0077;
-      font-size: 1.35em;
-      text-align: center;
+    #about h3{ margin-top:1.8em; color:#ff0077; font-size:1.35em; text-align:center; }
+
+    .timeline-container{ margin-top:35px; }
+    .timeline-item{
+      display:block;
+      text-decoration:none;
+      color:#e0e0e0;
+      margin-bottom:20px;
+      transition:.3s;
+    }
+    .timeline-item:hover .timeline-content{ transform: translateX(8px); box-shadow:0 8px 24px rgba(0,209,255,0.06); }
+    .timeline-content{
+      background: rgba(255,255,255,0.03);
+      padding:1em;
+      border-radius:8px;
+      border-left:3px solid #00d1ff;
+      border-right:3px solid #ff0077;
+      transition:.3s;
     }
 
-    .timeline-container {
-      margin-top: 35px;
-    }
-
-    .timeline-item {
-      display: block;
-      text-decoration: none;
-      color: #e0e0e0;
-      margin-bottom: 20px;
-      transition: .3s;
-    }
-
-    .timeline-item:hover .timeline-content {
-      transform: translateX(10px);
-      box-shadow: 0 0 12px rgba(0,209,255,0.25);
-    }
-
-    .timeline-content {
-      background: rgba(255,255,255,0.05);
-      padding: 1em;
-      border-radius: 8px;
-      border-left: 3px solid #00d1ff;
-      border-right: 3px solid #ff0077;
-      transition: .3s;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.2em;
-      margin-top: 20px;
-    }
-
-    .step-box {
+    .steps{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1.2em; margin-top:20px; }
+    .step-box{
       background: rgba(255,255,255,0.04);
-      padding: 1.5em;
-      border-radius: 12px;
-      text-align: center;
-      border: 1px solid rgba(0,209,255,0.15);
-      transition: 0.3s;
-      cursor: pointer;
+      padding:1.5em;
+      border-radius:12px;
+      text-align:center;
+      border:1px solid rgba(0,209,255,0.15);
+      transition: transform .25s ease, box-shadow .25s ease;
+      cursor:pointer;
+      backdrop-filter: blur(4px);
+    }
+    .step-box:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 18px 40px rgba(0,209,255,0.06); }
+    .step-img{ width:80px; height:80px; margin-bottom:12px; filter: drop-shadow(0 0 5px rgba(0,209,255,0.5)); transition:.25s; }
+    .step-box:hover .step-img{ transform: scale(1.12); }
+
+    .benefits{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1.2em; }
+    .benefit{
+      background: rgba(255,255,255,0.05);
+      padding:1.4em;
+      border-radius:12px;
+      text-align:center;
+      border:1px solid rgba(0,209,255,0.15);
+      text-decoration:none;
+      color:#e0e0e0;
+      display:block;
+      transition:.3s;
+      backdrop-filter: blur(4px);
+    }
+    .benefit:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,209,255,0.06); background: rgba(255,255,255,0.06); }
+
+    .benefit-img{ width:65px; margin-bottom:10px; transition:.25s; }
+    .benefit:hover .benefit-img{ transform: scale(1.1); }
+    .benefit h3{ color:#00d1ff; margin-bottom:6px; }
+    .benefit p{ font-size:0.95em; color:#dcdcdc; text-align:justify; }
+
+    .cards{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1.2em; margin-top:20px; }
+    .card{
+      background: rgba(255,255,255,0.04);
+      padding:1.5em;
+      border-radius:12px;
+      text-align:center;
+      border:1px solid rgba(0,209,255,0.15);
+      transition: transform .25s ease, box-shadow .25s ease;
+      cursor:pointer;
+      backdrop-filter: blur(4px);
+    }
+    .card:hover{ transform: translateY(-6px) scale(1.03); box-shadow: 0 18px 40px rgba(0,209,255,0.06); }
+    .app-img{ width:85px; height:85px; margin-bottom:12px; filter: drop-shadow(0 0 5px rgba(0,209,255,0.45)); transition:.25s; }
+    .card:hover .app-img{ transform: scale(1.12); }
+    .card h3{ color:#00d1ff; margin-bottom:6px; }
+    .card p{ font-size:0.95em; color:#dcdcdc; text-align:justify; }
+
+    .testimonials{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1.2em; margin-top:20px; }
+    .review-card{
+      background: rgba(255,255,255,0.05);
+      padding:1.6em;
+      border-radius:12px;
+      border:1px solid rgba(0,209,255,0.15);
+      text-align:center;
+      transition: transform .25s ease, box-shadow .25s ease;
+      backdrop-filter: blur(4px);
+    }
+    .review-card:hover{ transform: translateY(-6px) scale(1.02); box-shadow:0 18px 40px rgba(0,209,255,0.06); }
+    .review-img{ width:75px; height:75px; border-radius:50%; margin-bottom:10px; filter: drop-shadow(0 0 4px rgba(0,209,255,0.5)); }
+    .review-card p{ font-size:0.95em; line-height:1.6; color:#dcdcdc; text-align:justify; margin-bottom:10px; }
+    .review-card h4{ color:#00d1ff; font-weight:600; margin-top:6px; }
+
+    .contact-box p{ margin-bottom:12px; font-size:1.05em; line-height:1.8; text-align:justify; color:#e4e4e4; }
+    .contact-box b{ color:#00d1ff; }
+
+    footer{
+      text-align:center;
+      padding:2em;
+      margin-top:2em;
+      color:#888;
+      border-top:1px solid rgba(255,255,255,0.03);
+      font-size:.95em;
+      background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.03));
+    }
+    footer> a{ text-decoration:none; color:#00d1ff; transform:scale(1.02); font-weight:700; }
+
+    .reveal{ opacity:0; transform: translateY(12px); transition: all .7s cubic-bezier(.2,.9,.2,1); will-change:transform,opacity; }
+    .reveal.revealed{ opacity:1; transform:none; }
+
+    #backToTop{
+      position:fixed; right:20px; bottom:18px;
+      background: linear-gradient(90deg,#00d1ff,#ff6aa6);
+      color:#021617; border:none; padding:.7rem .85rem; border-radius:12px;
+      box-shadow: 0 10px 30px rgba(0,209,255,0.12);
+      cursor:pointer; display:none; z-index:999;
     }
 
-    .step-box:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 0 15px rgba(0,209,255,0.3);
+    @media (max-width: 992px){
+      header{ padding:1em 4%; }
+      .hero-content h2{ font-size:2.2em; }
+      .hero-content p{ font-size:1em; }
     }
+   @media (max-width: 768px){
+  nav ul{ flex-wrap:wrap; gap:10px; justify-content:center; }
+  .hero{ padding:2em 1em; min-height:70vh; }
+  .hero-content h2{ font-size:2rem; }
+  section{ padding:2em 1.5em; }
 
-    .step-img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 12px;
-      filter: drop-shadow(0 0 5px rgba(0,209,255,0.5));
-      transition: .3s;
-    }
-
-    .step-box:hover .step-img {
-      transform: scale(1.12);
-    }
-
-    .step-box h3 {
-      margin-bottom: 8px;
-      color: #00d1ff;
-    }
-
-    .step-box p {
-      font-size: 0.95em;
-      color: #dcdcdc;
-    }
-
-   .benefits {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.2em;
-}
-
-.benefit {
-  background: rgba(255,255,255,0.05);
-  padding: 1.4em;
-  border-radius: 12px;
-  text-align: center;
-  border: 1px solid rgba(0,209,255,0.15);
-  text-decoration: none;
-  color: #e0e0e0;     
-  display: block;     
-  transition: .3s;
-}
-
-.benefit:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 15px rgba(0,209,255,0.25);
-  background: rgba(255,255,255,0.08);
-}
-
-.benefit-img {
-  width: 65px;
-  margin-bottom: 10px;
-}
-
-
-.benefit:hover .benefit-img {
-  transform: scale(1.1);
-}
-
-.benefit h3 {
-  color: #00d1ff;
-  margin-bottom: 6px;
-}
-
-.benefit p {
-  font-size: 0.95em;
-  color: #dcdcdc;
-  text-align: justify;
-}
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.2em;
-  margin-top: 20px;
-}
-
-.card {
-  background: rgba(255,255,255,0.04);
-  padding: 1.5em;
-  border-radius: 12px;
-  text-align: center;
-  border: 1px solid rgba(0,209,255,0.15);
-  transition: 0.3s;
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 0 15px rgba(0,209,255,0.25);
-}
-
-.app-img {
-  width: 85px;
-  height: 85px;
-  margin-bottom: 12px;
-  filter: drop-shadow(0 0 5px rgba(0,209,255,0.45));
-  transition: .3s;
-}
-
-.card:hover .app-img {
-  transform: scale(1.12);
-}
-
-.card h3 {
-  color: #00d1ff;
-  margin-bottom: 6px;
-}
-
-.card p {
-  font-size: 0.95em;
-  color: #dcdcdc;
-  text-align: justify;
-}
-
-
-.testimonials {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.2em;
-  margin-top: 20px;
-}
-
-.review-card {
-  background: rgba(255,255,255,0.05);
-  padding: 1.6em;
-  border-radius: 12px;
-  border: 1px solid rgba(0,209,255,0.15);
-  text-align: center;
-  transition: 0.3s;
-}
-
-.review-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 0 15px rgba(0,209,255,0.25);
-}
-
-.review-img {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  filter: drop-shadow(0 0 4px rgba(0,209,255,0.5));
-}
-
-.review-card p {
-  font-size: 0.95em;
-  line-height: 1.6;
-  color: #dcdcdc;
-  text-align: justify;
-  margin-bottom: 10px;
-}
-
-.review-card h4 {
-  color: #00d1ff;
-  font-weight: 600;
-  margin-top: 6px;
-}
-
-    .contact-box p {
-  margin-bottom: 12px;
-  font-size: 1.05em;
-  line-height: 1.8;
-  text-align: justify;
-  color: #e4e4e4;
-}
-
-.contact-box b {
-  color: #00d1ff;
-}
-
-    footer {
-      text-align: center;
-      padding: 2em;
-      margin-top: 2em;
-      color: #888;
-      border-top: 1px solid #222;
-      font-size: .95em;
-    }
-    footer> a { 
-      text-decoration: none;
-      color: #00d1ff;
-      transform: scale(1.12);
-    }
-    
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    /* ✅ RESPONSIVE FIXES */
-@media (max-width: 992px) {
-  header {
-    padding: 1em 4%;
-  }
-
-  .hero-content h2 {
-    font-size: 2.2em;
-  }
-
-  .hero-content p {
-    font-size: 1em;
-  }
-}
-
-@media (max-width: 768px) {
-
-  nav ul {
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
-
-  .hero {
-    padding: 2em 1em;
-  }
-
-  .hero-content h2 {
-    font-size: 2em;
-  }
-
-  section {
-    padding: 2em 1.5em;
-  }
-
-  .steps,
-  .benefits,
-  .cards,
-  .testimonials {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .step-img,
-  .benefit-img,
-  .app-img,
-  .review-img {
-    width: 65px;
-    height: 65px;
-  }
-
-  footer {
-    font-size: .9em;
-  }
-}
-
-@media (max-width: 540px) {
-
-  nav ul {
-    flex-direction: column;
-    gap: 8px;
-    text-align: right;
-  }
-
-  .hero {
-    min-height: 70vh;
-  }
-
-  .hero-content h2 {
-    font-size: 1.7em;
-  }
-
-  .hero-content p {
-    font-size: 0.9em;
-  }
-
-  .btn {
-    padding: 0.6em 1.4em;
-    font-size: .9em;
-  }
-
+  /* 👉 Show all cards one by one on mobile */
   .steps,
   .benefits,
   .cards,
@@ -472,28 +312,62 @@
     grid-template-columns: 1fr;
   }
 
-  section h2 {
-    font-size: 1.8em;
+  .step-img, .benefit-img, .app-img, .review-img{ width:65px; height:65px; }
+  footer{ font-size:.9em; }
+}
+
+@media (max-width: 540px) {
+
+  header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 0;
+    text-align: center;
   }
 
-  p {
-    font-size: 0.92em;
+  .logo {
+    text-align: center;
+    width: 100%;
+    justify-content: center;
   }
 
-  .step-img,
-  .benefit-img,
-  .app-img,
-  .review-img {
-    width: 60px;
-    height: 60px;
+  nav {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  nav ul {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  nav ul li {
+    width: auto;
+  }
+
+  nav ul li a {
+    display: inline-block;
+    padding: 8px 12px;
+    text-wrap: wrap;
+    white-space: normal;
   }
 }
+
+
+    a:focus, button:focus{ outline:3px dashed rgba(0,209,255,0.12); outline-offset:3px; border-radius:6px; }
+
+    @keyframes fadeIn{ from{ opacity:0; transform: translateY(14px);} to{ opacity:1; transform:none; } }
+
   </style>
 </head>
 
 <body>
 
-<header>
+<header id="header">
   <h1 class="logo">GenAI<span>Verse</span></h1>
   <nav>
     <ul>
@@ -509,10 +383,13 @@
 </header>
 
 <section id="home" class="hero">
+  <div class="bg-orb orb-a" aria-hidden="true"></div>
+  <div class="bg-orb orb-b" aria-hidden="true"></div>
+
   <div class="hero-content">
-    <h2>Explore the Power of <span style="color:#00d1ff;">Artificial & Generative Intelligence</span></h2>
+    <h2>Explore the Power of <span style="color:#00d1ff;" id="typed">Artificial & Generative Intelligence</span></h2>
     <p>AI is shaping the future of medicine, creativity, automation and daily life.</p>
-    <a href="#about" class="btn">Get Started</a>
+    <a href="#about" class="btn" id="getStarted">Get Started</a>
   </div>
 </section>
 
@@ -595,32 +472,32 @@
   <div class="steps">
 
     <a href="data-input.html" style="text-decoration:none; color:inherit;">
-      <div class="step-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/5691/5691506.png" class="step-img">
+      <div class="step-box reveal">
+        <img src="https://cdn-icons-png.flaticon.com/512/5691/5691506.png" class="step-img" alt="data input">
         <h3>1. Data Input</h3>
         <p>AI learns from large datasets such as images, text, or sound.</p>
       </div>
     </a>
 
     <a href="training.html" style="text-decoration:none; color:inherit;">
-      <div class="step-box">
-        <img src="https://cdn-icons-png.flaticon.com/128/4712/4712027.png" class="step-img">
+      <div class="step-box reveal">
+        <img src="https://cdn-icons-png.flaticon.com/128/4712/4712027.png" class="step-img" alt="training">
         <h3>2. Training</h3>
         <p>Algorithms analyze patterns and relationships.</p>
       </div>
     </a>
 
     <a href="prediction.html" style="text-decoration:none; color:inherit;">
-      <div class="step-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png" class="step-img">
+      <div class="step-box reveal">
+        <img src="https://cdn-icons-png.flaticon.com/512/3602/3602145.png" class="step-img" alt="prediction">
         <h3>3. Prediction</h3>
         <p>AI identifies objects, answers questions, or generates content.</p>
       </div>
     </a>
 
     <a href="improvement.html" style="text-decoration:none; color:inherit;">
-      <div class="step-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/9021/9021254.png" class="step-img">
+      <div class="step-box reveal">
+        <img src="https://cdn-icons-png.flaticon.com/512/9021/9021254.png" class="step-img" alt="improvement">
         <h3>4. Improvement</h3>
         <p>More data = smarter AI.</p>
       </div>
@@ -634,26 +511,26 @@
 
   <div class="benefits">
 
-    <a href="faster-work.html" class="benefit">
-      <img src="https://cdn-icons-png.flaticon.com/512/2920/2920256.png" class="benefit-img">
+    <a href="faster-work.html" class="benefit reveal">
+      <img src="https://cdn-icons-png.flaticon.com/512/2920/2920256.png" class="benefit-img" alt="faster work">
       <h3>⚡ Faster Work</h3>
       <p>AI automates repetitive tasks and works 24/7 without rest.</p>
     </a>
 
-    <a href="accuracy.html" class="benefit">
-      <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="benefit-img">
+    <a href="accuracy.html" class="benefit reveal">
+      <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="benefit-img" alt="accuracy">
       <h3>🎯 Accuracy</h3>
       <p>AI is used in healthcare, security, and high-precision industries.</p>
     </a>
 
-    <a href="smarter-world.html" class="benefit">
-      <img src="https://cdn-icons-png.flaticon.com/512/5950/5950392.png" class="benefit-img">
+    <a href="smarter-world.html" class="benefit reveal">
+      <img src="https://cdn-icons-png.flaticon.com/512/5950/5950392.png" class="benefit-img" alt="smarter world">
       <h3>🌍 Smarter World</h3>
       <p>Self-driving cars, drones, robots, and smart cities use AI.</p>
     </a>
 
-    <a href="creativity.html" class="benefit">
-      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" class="benefit-img">
+    <a href="creativity.html" class="benefit reveal">
+      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" class="benefit-img" alt="creativity">
       <h3>🎨 Creativity</h3>
       <p>AI generates art, music, designs, animations and videos.</p>
     </a>
@@ -661,82 +538,199 @@
   </div>
 </section>
 
-
-
 <section id="applications">
   <h2>Applications of Generative AI</h2>
 
   <div class="cards">
 
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/8363/8363945.png" class="app-img">
+    <a href="art-design.html" class="card reveal">
+      <img src="https://cdn-icons-png.flaticon.com/512/8363/8363945.png" class="app-img" alt="art & design">
       <h3>🎨 Art & Design</h3>
       <p>AI creates paintings, illustrations, logos, 3D models and animations.</p>
-    </div>
+    </a>
 
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712007.png" class="app-img">
+    <a href="chatbots.html" class="card reveal">
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712007.png" class="app-img" alt="chatbots">
       <h3>💬 Chatbots</h3>
       <p>Write essays, answer questions, give explanations and assist users 24/7.</p>
-    </div>
+    </a>
 
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/5626/5626569.png" class="app-img">
+    <a href="music.html" class="card reveal">
+      <img src="https://cdn-icons-png.flaticon.com/512/5626/5626569.png" class="app-img" alt="music">
       <h3>🎧 Music</h3>
       <p>AI generates songs, beats, voices and unique audio compositions.</p>
-    </div>
+    </a>
 
-    <div class="card">
-      <img src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png" class="app-img">
+    <a href="healthcare.html" class="card reveal">
+      <img src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png" class="app-img" alt="healthcare">
       <h3>🏥 Healthcare</h3>
       <p>Diagnoses diseases, reads medical scans, designs medicines and research drugs.</p>
-    </div>
+    </a>
 
   </div>
 </section>
-
 
 <section id="testimonials">
   <h2>What People Say</h2>
 
   <div class="testimonials">
 
-    <div class="review-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" class="review-img">
-      <p>“Generative AI changed how designers work. Ideas turn into visuals instantly.”</p>
-      <h4>- A Creative Designer</h4>
-    </div>
+    <a href="designer-review.html" style="text-decoration:none; color:inherit;">
+      <div class="review-card reveal">
+        <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" class="review-img" alt="designer">
+        <p>“Generative AI changed how designers work. Ideas turn into visuals instantly.”</p>
+        <h4>- A Creative Designer</h4>
+      </div>
+    </a>
 
-    <div class="review-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" class="review-img">
-      <p>“AI chatbots help companies provide 24/7 customer service.”</p>
-      <h4>- Business Owner</h4>
-    </div>
+    <a href="business-review.html" style="text-decoration:none; color:inherit;">
+      <div class="review-card reveal">
+        <img src="https://cdn-icons-png.flaticon.com/512/2922/2922561.png" class="review-img" alt="business owner">
+        <p>“AI chatbots help companies provide 24/7 customer service.”</p>
+        <h4>- Business Owner</h4>
+      </div>
+    </a>
 
-    <div class="review-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/2922/2922656.png" class="review-img">
-      <p>“Hospitals use AI to detect diseases early and save lives.”</p>
-      <h4>- Medical Researcher</h4>
-    </div>
+    <a href="medical-review.html" style="text-decoration:none; color:inherit;">
+      <div class="review-card reveal">
+        <img src="https://cdn-icons-png.flaticon.com/512/2922/2922656.png" class="review-img" alt="medical researcher">
+        <p>“Hospitals use AI to detect diseases early and save lives.”</p>
+        <h4>- Medical Researcher</h4>
+      </div>
+    </a>
 
   </div>
 </section>
 
-
 <section id="contact">
   <h2>Get in Touch</h2>
-  <div class="contact-box">
+  <div class="contact-box reveal">
     <p><b>📩 Email:</b> info@genaiverse.com</p>
     <p><b>🌐 Website:</b> www.genaiverse.com</p>
     <p><em>The future belongs to innovators ✨</em></p>
   </div>
 </section>
 
-
 <footer>
-   GenAIVerse | Built for AOTM Project |
+  GenAIVerse | Built for AOTM Project |
   <a href="#home">Back to Top</a>
 </footer>
+
+<button id="backToTop" title="Back to top" aria-label="Back to top">↑</button>
+
+<script>
+  (function(){
+    const typedEl = document.getElementById('typed');
+    const baseText = typedEl.textContent.trim();
+    const phrases = [ baseText, 'Artificial Intelligence', 'Generative Intelligence', 'AI for Creativity & Science' ];
+    let idx = 0, char = 0, forward = true, pIndex = 0;
+
+    function typedStep(){
+      const current = phrases[pIndex % phrases.length];
+      if(forward){
+        char++;
+        typedEl.textContent = current.slice(0,char);
+        if(char >= current.length){
+          forward = false;
+          setTimeout(typedStep, 900);
+        } else setTimeout(typedStep, 36);
+      } else {
+        char--;
+        typedEl.textContent = current.slice(0,char);
+        if(char <= 0){
+          forward = true;
+          pIndex++;
+          setTimeout(typedStep, 160);
+        } else setTimeout(typedStep, 24);
+      }
+    }
+    setTimeout(typedStep, 600);
+
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          e.target.classList.add('revealed');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => io.observe(r));
+
+    const header = document.getElementById('header');
+    const backBtn = document.getElementById('backToTop');
+    const navLinks = Array.from(document.querySelectorAll('nav a'));
+    const sections = navLinks.map(a => {
+      const href = a.getAttribute('href');
+      return (href && href.startsWith('#')) ? document.querySelector(href) : null;
+    });
+
+    function throttle(fn, wait=80){
+      let last = 0;
+      return function(...args){
+        const now = Date.now();
+        if(now - last >= wait){ last = now; fn.apply(this, args); }
+      }
+    }
+
+    function onScroll(){
+      const y = window.scrollY || window.pageYOffset;
+      if(y > 24) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+      backBtn.style.display = y > 420 ? 'inline-block' : 'none';
+
+      let currentIndex = -1;
+      for(let i=0;i<sections.length;i++){
+        const s = sections[i];
+        if(!s) continue;
+        const rect = s.getBoundingClientRect();
+        if(rect.top <= window.innerHeight * 0.35) currentIndex = i;
+      }
+      navLinks.forEach((a,i) => {
+        if(i === currentIndex) a.classList.add('active'); else a.classList.remove('active');
+      });
+    }
+    window.addEventListener('scroll', throttle(onScroll, 90));
+    window.addEventListener('resize', throttle(onScroll, 150));
+    setTimeout(onScroll, 200);
+
+    backBtn.addEventListener('click', ()=> window.scrollTo({ top:0, behavior:'smooth' }));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(!href || href === '#') return;
+        const target = document.querySelector(href);
+        if(target){
+          e.preventDefault();
+          const offset = header.offsetHeight + 10;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior:'smooth' });
+        }
+      });
+    });
+
+    const interactive = document.querySelectorAll('.card, .step-box, .benefit, .review-card');
+    interactive.forEach(el => {
+      el.addEventListener('mousemove', (ev) => {
+        const rect = el.getBoundingClientRect();
+        const x = (ev.clientX - rect.left) / rect.width;
+        const y = (ev.clientY - rect.top) / rect.height;
+        el.style.transform = `perspective(900px) rotateX(${(0.5 - y) * 4}deg) rotateY(${(x - 0.5) * 8}deg)`;
+      });
+      el.addEventListener('mouseleave', ()=> {
+        el.style.transition = 'transform .35s cubic-bezier(.2,.8,.2,1)';
+        el.style.transform = '';
+        setTimeout(()=> el.style.transition = '', 350);
+      });
+    });
+
+    document.querySelectorAll('img').forEach(img => { if('loading' in HTMLImageElement.prototype) img.loading = 'lazy'; });
+
+    const getStarted = document.getElementById('getStarted');
+    getStarted.addEventListener('keypress', (e)=> { if(e.key === 'Enter') location.hash = '#about'; });
+
+  })();
+</script>
 
 </body>
 </html>
